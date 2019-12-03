@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { people } from '../../constants/people';
-
-import { Header  } from '../Header/Header';
+import { ButtonAsClass as Button } from '../Button/Button';
+import { Header } from '../Header/Header';
+import Checkbox from '../Checkbox/Checkbox';
+import { Input } from '../Input/Input';
 
 import './App.css';
+
+const CN = 'App';
 
 function renderPeopleList() {
   return people.map(person => {
@@ -24,52 +28,62 @@ function renderPeopleList() {
   });
 }
 
-function renderBtn() {
-  return (
-    <div className="actions-block">
-      <div className="btn-wrapper">
-        <button type="button">Cancel</button>
-      </div>
-      <div className="btn-wrapper">
-        <button type="button">Apply</button>
-      </div>
-    </div>
-  );
-}
-
-/*
-function App() {
-  const greeting = 'Hello, world!';
-  const greetingElement = (<div className="class-12">{greeting}</div>);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        {greetingElement}
-
-        {renderMultipleElements()}
-      </header>
-
-      <ul className="list">{renderPeopleList()}</ul>
-
-      {
-        React.createElement('div', null, 'Hello guys!')
-      }
-
-      {renderBtn()}
-    </div>
-  );
-}
-*/
-
 class AppTheReal extends Component {
-  render() {
-    const greeting = 'Hello, world!';
-    const greetingElement = (<div className="class-12">{greeting}</div>);
+  constructor() {
+    super();
 
+    this.greeting = 'Hello, world!';
+
+    this.state = {
+      isChecked: false,
+      inputValue: ''
+    };
+
+    this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
+    this.onCheck = this.onCheck.bind(this);
+  }
+
+  renderActionsBlock() {
     return (
-      <div className="App">
+      <div className="actions-block">
+        <Button
+          label="Cancel"
+          className={`${CN}__btn ${CN}__btn--error`}
+          onClick={this.onApplyBtnClick}
+        />
+
+        <Button label="Apply" className={`${CN}__btn`}/>
+      </div>
+    );
+  }
+
+  onApplyBtnClick() {
+    window.alert('Hello!');
+  }
+
+  onCheck(e) {
+    const { isChecked } = this.state;
+
+    this.setState({
+      isChecked: !isChecked
+    }, () => {
+      console.log('state changed');
+    });
+  }
+
+  onInputChange = (inputValue) => {
+    this.setState({
+      inputValue
+    });
+  };
+
+  render() {
+    const { isChecked, inputValue } = this.state;
+    const greetingElement = (<div className="class-12">{this.greeting}</div>);
+
+    console.log('App render');
+    return (
+      <div className={CN}>
         <Header
           className="App-header"
           showLogo={true}
@@ -78,17 +92,15 @@ class AppTheReal extends Component {
         </Header>
 
         <div>
-          <span>test</span>
+          {greetingElement}
         </div>
 
+        <Checkbox label="Click me" isChecked={isChecked} onChange={this.onCheck}/>
+
+        <Input value={inputValue} onChange={this.onInputChange}/>
         <div className="divider"/>
         <ul className="list">{renderPeopleList()}</ul>
-
-        {
-          React.createElement('div', null, 'Hello guys!')
-        }
-
-        {renderBtn()}
+        {this.renderActionsBlock()}
       </div>
     );
   }

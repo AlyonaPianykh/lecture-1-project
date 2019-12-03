@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../logo.svg';
+import { ButtonAsClass as Button } from '../Button/Button';
 import './Header.css';
 
 const CN = 'default-header';
@@ -17,7 +18,7 @@ export const Header = ({ className, greeting = "test", showLogo,children }) => {
   return (
     <header className={`${CN} ${className}`}>
       { showLogo && (
-        <img src={logo} className="App-logo" alt="logo"/>
+        <img src={logo} className={`${CN}-logo`} alt="logo"/>
       )
       }
 
@@ -25,6 +26,7 @@ export const Header = ({ className, greeting = "test", showLogo,children }) => {
 
       {renderMultipleElements()}
       {children}
+      <Button label="Login" className={`${CN}-btn`}/>
     </header>
   );
 };

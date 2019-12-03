@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 48px;
-}
-
-.App-header {
-  background-color: #282c34;
-  display: flex;
-  align-items: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 .App-link {
   color: #09d3ac;
@@ -52,4 +41,9 @@
     width: 100px;
     height: 2px;
     background-color: lightseagreen;
+}
+
+.actions-block {
+  border: 1px solid #ececec;;
+  padding: 10px 20px;
 }
