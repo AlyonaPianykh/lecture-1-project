@@ -1,4 +1,11 @@
 
-.defaultHeader {
+.default-header {
     height: 75px;
+}
+
+.default-header .default-header-btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: lightseagreen;
 }

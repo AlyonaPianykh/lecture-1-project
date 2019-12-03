@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from '../Button/Button';
+
 import logo from '../../logo.svg';
 import './Header.css';
 
@@ -25,6 +27,7 @@ export const Header = ({ className, greeting = "test", showLogo,children }) => {
 
       {renderMultipleElements()}
       {children}
+      <Button label="Login" className={`${CN}-btn`}/>
     </header>
   );
 };

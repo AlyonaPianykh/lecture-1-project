@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.App--dark {
+  background-color: #282c34;
+  color: white;
+}
+
 .App-logo {
   height: 48px;
 }
@@ -12,6 +17,10 @@
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App--dark .App-header {
+  border-bottom: 1px solid lightseagreen;
 }
 
 .App-link {

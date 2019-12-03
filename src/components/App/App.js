@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { people } from '../../constants/people';
-
-import { Header  } from '../Header/Header';
+import { Button } from '../Button/Button';
+import { Header } from '../Header/Header';
+import { List } from '../List/List';
+import { Input } from '../Input/Input';
 
 import './App.css';
 
@@ -24,52 +26,78 @@ function renderPeopleList() {
   });
 }
 
-function renderBtn() {
-  return (
-    <div className="actions-block">
-      <div className="btn-wrapper">
-        <button type="button">Cancel</button>
-      </div>
-      <div className="btn-wrapper">
-        <button type="button">Apply</button>
-      </div>
-    </div>
-  );
-}
-
-/*
-function App() {
-  const greeting = 'Hello, world!';
-  const greetingElement = (<div className="class-12">{greeting}</div>);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        {greetingElement}
-
-        {renderMultipleElements()}
-      </header>
-
-      <ul className="list">{renderPeopleList()}</ul>
-
-      {
-        React.createElement('div', null, 'Hello guys!')
-      }
-
-      {renderBtn()}
-    </div>
-  );
-}
-*/
+const CN = 'App';
 
 class AppTheReal extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      greeting: 'Hello, robot!',
+      characters: ['Iron Man', 'Batman'],
+      inputValue: '',
+      isDarkTheme: true
+    };
+    //this.onCancelClick = this.onCancelClick.bind(this);
+    this.onThemeChange = this.onThemeChange.bind(this);
+  }
+
+  onAddCharacterClick = () => {
+    const { characters, inputValue } = this.state;
+
+    const newCharacters = [...characters];
+    newCharacters.push(inputValue);
+
+    this.setState({
+      characters: newCharacters,
+      inputValue: ''
+    });
+  };
+
+  onThemeChange() {
+    const {isDarkTheme} = this.state;
+
+    this.setState({
+      isDarkTheme: !isDarkTheme
+    });
+  }
+
+  onInputChange = (event) => {
+    const {value: inputValue} = event.target;
+
+    console.log(inputValue);
+    this.setState({
+      inputValue
+    })
+  };
+
+  renderActionsBlock() {
+    return (
+      <div className="actions-block">
+        <Button
+          label="Add Character"
+          onClick={this.onAddCharacterClick}
+        />
+        <Button
+          label="On"
+          onClick={this.onThemeChange}
+        />
+        <Button
+          label="Off"
+          onClick={this.onThemeChange}
+        />
+      </div>
+    );
+  }
+
   render() {
-    const greeting = 'Hello, world!';
-    const greetingElement = (<div className="class-12">{greeting}</div>);
+    const { inputValue, isDarkTheme, characters } = this.state;
+
+    const darkThemeCN = isDarkTheme ? `${CN}--dark` : '';
 
     return (
-      <div className="App">
+      <div className={`${CN} ${darkThemeCN}`}>
         <Header
           className="App-header"
           showLogo={true}
@@ -77,18 +105,15 @@ class AppTheReal extends Component {
           <div>this is children of header</div>
         </Header>
 
-        <div>
-          <span>test</span>
-        </div>
+
+        <List options={characters}/>
 
         <div className="divider"/>
         <ul className="list">{renderPeopleList()}</ul>
 
-        {
-          React.createElement('div', null, 'Hello guys!')
-        }
 
-        {renderBtn()}
+        <Input value={inputValue} onChange={this.onInputChange}/>
+        {this.renderActionsBlock()}
       </div>
     );
   }
