@@ -36,7 +36,8 @@ class AppTheReal extends Component {
 
     this.state = {
       isChecked: false,
-      inputValue: ''
+      inputValue: '',
+      isDarkTheme: true
     };
 
     this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
@@ -52,13 +53,21 @@ class AppTheReal extends Component {
           onClick={this.onApplyBtnClick}
         />
 
-        <Button label="Apply" className={`${CN}__btn`}/>
+        <Button
+          label="Apply"
+          className={`${CN}__btn`}
+          onClick={this.onApplyBtnClick}
+        />
       </div>
     );
   }
 
   onApplyBtnClick() {
-    window.alert('Hello!');
+    const {isDarkTheme} = this.state;
+
+    this.setState({
+      isDarkTheme: !isDarkTheme
+    });
   }
 
   onCheck(e) {
@@ -78,12 +87,15 @@ class AppTheReal extends Component {
   };
 
   render() {
-    const { isChecked, inputValue } = this.state;
+    const { isChecked, inputValue, isDarkTheme } = this.state;
     const greetingElement = (<div className="class-12">{this.greeting}</div>);
 
     console.log('App render');
+
+    const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
+
     return (
-      <div className={CN}>
+      <div className={`${CN} ${darkThemeClass}`}>
         <Header
           className="App-header"
           showLogo={true}

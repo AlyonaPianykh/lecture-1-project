@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.App__dark {
+    background-color: #282c34;
+}
+
+.App__dark .App-header {
+    border-bottom: 1px solid #09d3ac;
+}
 
 .App-link {
   color: #09d3ac;
