@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import './Button.css';
-// const Button = (props) => {
-//
-//
-// };
+
 const CN = 'default-btn';
 
-export class ButtonAsClass extends Component {
+export class Button extends Component {
   constructor(props) {
     super(props);
 

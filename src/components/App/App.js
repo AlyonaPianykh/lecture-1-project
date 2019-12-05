@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
-import { people } from '../../constants/people';
-import { ButtonAsClass as Button } from '../Button/Button';
+import { Button as Button } from '../Button/Button';
 import { Header } from '../Header/Header';
-import Checkbox from '../Checkbox/Checkbox';
-import { Input } from '../Input/Input';
 
+import { Form } from '../Form/Form';
 import './App.css';
 
 const CN = 'App';
-
-function renderPeopleList() {
-  return people.map(person => {
-    const { firstName, lastName, avatar, address = 'New York' } = person;
-
-    return (
-      <li className="list-item" key={`${firstName} ${lastName}`}>
-        <div>{firstName}</div>
-        <div>{lastName}</div>
-        <img
-          src={avatar}
-          className="avatar"
-          alt={`avatar for ${firstName} ${lastName}`}
-        />
-        <div>{address}</div>
-      </li>
-    );
-  });
-}
 
 class AppTheReal extends Component {
   constructor() {
@@ -35,13 +14,11 @@ class AppTheReal extends Component {
     this.greeting = 'Hello, world!';
 
     this.state = {
-      isChecked: false,
-      inputValue: '',
-      isDarkTheme: true
+      isDarkTheme: false,
+      showSuccess: false
     };
 
     this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
-    this.onCheck = this.onCheck.bind(this);
   }
 
   renderActionsBlock() {
@@ -70,24 +47,16 @@ class AppTheReal extends Component {
     });
   }
 
-  onCheck(e) {
-    const { isChecked } = this.state;
+  onFormSubmit = () => {
+    const { showSuccess } = this.state;
 
     this.setState({
-      isChecked: !isChecked
-    }, () => {
-      console.log('state changed');
-    });
-  }
-
-  onInputChange = (inputValue) => {
-    this.setState({
-      inputValue
+      showSuccess: true
     });
   };
 
   render() {
-    const { isChecked, inputValue, isDarkTheme } = this.state;
+    const { isChecked, inputValue, isDarkTheme, showSuccess } = this.state;
     const greetingElement = (<div className="class-12">{this.greeting}</div>);
 
     console.log('App render');
@@ -103,16 +72,9 @@ class AppTheReal extends Component {
           <div>this is children of header</div>
         </Header>
 
-        <div>
-          {greetingElement}
-        </div>
+        <Form onSubmit={this.onFormSubmit}/>
 
-        <Checkbox label="Click me" isChecked={isChecked} onChange={this.onCheck}/>
-
-        <Input value={inputValue} onChange={this.onInputChange}/>
-        <div className="divider"/>
-        <ul className="list">{renderPeopleList()}</ul>
-        {this.renderActionsBlock()}
+        { showSuccess && <div>All good!</div> }
       </div>
     );
   }
