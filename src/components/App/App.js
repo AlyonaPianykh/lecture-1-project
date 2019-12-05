@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { people } from '../../constants/people';
-import { ButtonAsClass as Button } from '../Button/Button';
+import { Button as Button } from '../Button/Button';
 import { Header } from '../Header/Header';
 import Checkbox from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
+import { Form } from "../Form/Form";
 
 import './App.css';
 
@@ -37,11 +38,11 @@ class AppTheReal extends Component {
     this.state = {
       isChecked: false,
       inputValue: '',
-      isDarkTheme: true
+      isDarkTheme: false,
+      showSuccess: false
     };
 
     this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
-    this.onCheck = this.onCheck.bind(this);
   }
 
   renderActionsBlock() {
@@ -68,29 +69,19 @@ class AppTheReal extends Component {
     this.setState({
       isDarkTheme: !isDarkTheme
     });
-  }
+  };
 
-  onCheck(e) {
-    const { isChecked } = this.state;
+  onFormSubmit = () => {
+      const {showSuccess} = this.state;
 
-    this.setState({
-      isChecked: !isChecked
-    }, () => {
-      console.log('state changed');
-    });
-  }
+      this.setState({
+          showSuccess: true
+      })
 
-  onInputChange = (inputValue) => {
-    this.setState({
-      inputValue
-    });
   };
 
   render() {
-    const { isChecked, inputValue, isDarkTheme } = this.state;
-    const greetingElement = (<div className="class-12">{this.greeting}</div>);
-
-    console.log('App render');
+    const { isDarkTheme , showSuccess} = this.state;
 
     const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
 
@@ -103,16 +94,10 @@ class AppTheReal extends Component {
           <div>this is children of header</div>
         </Header>
 
-        <div>
-          {greetingElement}
-        </div>
+       <Form onFormSubmit = {this.onFormSubmit} />
 
-        <Checkbox label="Click me" isChecked={isChecked} onChange={this.onCheck}/>
+          {showSuccess && <div>ALL GOOD</div> } {/*We use logical and that show or hide elements that Look flags in state*/}
 
-        <Input value={inputValue} onChange={this.onInputChange}/>
-        <div className="divider"/>
-        <ul className="list">{renderPeopleList()}</ul>
-        {this.renderActionsBlock()}
       </div>
     );
   }
