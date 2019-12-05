@@ -26,7 +26,7 @@ export class Form extends Component {
         const {isChecked} = this.state;
 
         this.setState({
-            isChecked: !isChecked
+            isChecked : !isChecked
         });
     };
 
@@ -36,13 +36,12 @@ export class Form extends Component {
         return inputValue.length && isChecked;
     };
 
-    onFormSubmit = () => {
-        const {showSuccess} = this.state;
+    // OnFormSubmit = () => {
+    //     const {onFormSubmit} = this.props;
+    //     onFormSubmit && onFormSubmit();
+    //     console.log('success');
+    // };
 
-        this.setState({
-            showSuccess: !showSuccess
-        })
-    };
 
     render() {
         const {inputValue, isChecked} = this.state;

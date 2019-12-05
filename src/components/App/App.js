@@ -50,21 +50,22 @@ class AppTheReal extends Component {
     }
 
     onFormSubmit = () => {
-    //         const {showSuccess} = this.state;
-    //
-    //         this.setState({
-    //             showSuccess: !showSuccess
-    //         })
-    //     }
-    // }
+        //         const {showSuccess} = this.state;
+        //
+        //         this.setState({
+        //             showSuccess: !showSuccess
+        //         })
+        //     }
+        // }
         this.setState({
-        showSuccess: true
-        })
+            showSuccess: true
+        });
+        console.log('success');
     };
 
     render() {
-        const {isDarkTheme , showSuccess } = this.state;
-        const  darkThemeClass = isDarkTheme ? `${CN}__dark` :'';
+        const {isDarkTheme, showSuccess} = this.state;
+        const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
 
         return (
             <div className={`${CN} ${darkThemeClass}`}>
@@ -75,9 +76,9 @@ class AppTheReal extends Component {
                     <div>this is children of header</div>
                 </Header>
 
-                <Form onFormSubmit = {this.onFormSubmit}  />
+                <Form onFormSubmit = {this.onFormSubmit}/>
 
-                { showSuccess && <div>All good!</div> }
+                {showSuccess && <div>All good!</div>}
 
             </div>
         );

@@ -15,7 +15,7 @@ export class Button extends Component {
 
   onClick() {
     const { onClick } = this.props;
-console.log('I\' here');
+console.log('I\'m here');
     onClick && onClick();
   }
 
