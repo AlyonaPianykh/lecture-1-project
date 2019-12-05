@@ -6,7 +6,7 @@ import './Button.css';
 // };
 const CN = 'default-btn';
 
-export class ButtonAsClass extends Component {
+export class Button extends Component {
   constructor(props) {
     super(props);
 
@@ -15,7 +15,7 @@ export class ButtonAsClass extends Component {
 
   onClick() {
     const { onClick } = this.props;
-console.log('I\' here');
+    console.log('I\' here');
     onClick && onClick();
   }
 

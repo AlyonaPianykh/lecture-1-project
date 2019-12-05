@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../logo.svg';
-import { ButtonAsClass as Button } from '../Button/Button';
+import { Button } from '../Button/Button';
 import './Header.css';
 
 const CN = 'default-header';

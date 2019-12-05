@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { people } from '../../constants/people';
-import { ButtonAsClass as Button } from '../Button/Button';
+import { Button } from '../Button/Button';
 import { Header } from '../Header/Header';
 import Checkbox from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
+import { Form } from '../Form/Form';
 
 import './App.css';
 
@@ -37,11 +38,11 @@ class AppTheReal extends Component {
     this.state = {
       isChecked: false,
       inputValue: '',
-      isDarkTheme: true
+      isDarkTheme: true,
+      showSuccess: true
     };
 
     this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
-    this.onCheck = this.onCheck.bind(this);
   }
 
   renderActionsBlock() {
@@ -70,27 +71,17 @@ class AppTheReal extends Component {
     });
   }
 
-  onCheck(e) {
-    const { isChecked } = this.state;
-
+onFormSubmit = () =>{
+    const {showSuccess} = this.state
     this.setState({
-      isChecked: !isChecked
-    }, () => {
-      console.log('state changed');
-    });
-  }
+        showSuccess: true
+    })
+}
 
-  onInputChange = (inputValue) => {
-    this.setState({
-      inputValue
-    });
-  };
 
   render() {
-    const { isChecked, inputValue, isDarkTheme } = this.state;
-    const greetingElement = (<div className="class-12">{this.greeting}</div>);
+    const { isChecked, inputValue, isDarkTheme , showSuccess} = this.state;
 
-    console.log('App render');
 
     const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
 
@@ -102,20 +93,12 @@ class AppTheReal extends Component {
         >
           <div>this is children of header</div>
         </Header>
+        <Form  onFormsubmit={this.onFormSubmit} />
+        { showSuccess && <div>All good</div>}
 
-        <div>
-          {greetingElement}
-        </div>
-
-        <Checkbox label="Click me" isChecked={isChecked} onChange={this.onCheck}/>
-
-        <Input value={inputValue} onChange={this.onInputChange}/>
-        <div className="divider"/>
-        <ul className="list">{renderPeopleList()}</ul>
-        {this.renderActionsBlock()}
       </div>
     );
-  }
+}
 }
 
 export default AppTheReal;
