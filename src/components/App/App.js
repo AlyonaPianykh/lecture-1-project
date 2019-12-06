@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button as Button} from '../Button/Button';
 import {Header} from '../Header/Header';
 import {Form} from '../Form/Form'
+import Switch from 'react-switch';
 
 import './App.css';
 
@@ -76,7 +77,7 @@ class AppTheReal extends Component {
                     <div>this is children of header</div>
                 </Header>
 
-                <Form onFormSubmit = {this.onFormSubmit}/>
+                <Form onFormSubmit={this.onFormSubmit}/>
 
                 {showSuccess && <div>All good!</div>}
 
@@ -86,9 +87,19 @@ class AppTheReal extends Component {
                     onClick={this.onApplyBtnClick}
                 />
 
+                <div>Switcher</div>
+                <Switch
+                    onChange={this.onApplyBtnClick}
+                    checked={this.state.isChecked}
+                />
+
             </div>
         );
     }
 }
 
 export default AppTheReal;
+
+
+//when button is true, add style (green border to it), when false - don't
+//toggle add same function
