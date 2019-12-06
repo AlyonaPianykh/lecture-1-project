@@ -1,5 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+    text-align: center;
+    height: 100%;
 }
 
 .App__dark {
@@ -11,32 +16,32 @@
 }
 
 .App-link {
-  color: #09d3ac;
+    color: #09d3ac;
 }
 
 .list {
-  padding: 20px;
+    padding: 20px;
 }
 
 .list-item {
-  margin: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid #ececec;
-  padding: 15px 20px;
-  border-radius: 5px;
+    margin: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ececec;
+    padding: 15px 20px;
+    border-radius: 5px;
 }
 
 .list-item > div {
-  flex: 1;
-  text-align: left;
+    flex: 1;
+    text-align: left;
 }
 
 .avatar {
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
 }
 
 .btn-element {
@@ -51,6 +56,19 @@
 }
 
 .actions-block {
-  border: 1px solid #ececec;;
-  padding: 10px 20px;
+    border: 1px solid #ececec;;
+    padding: 10px 20px;
+}
+
+.App-footer {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    padding: 20px 30px;
+    background-color: lightgrey;
+    font-size: 13px;
+    color: #282c34;
 }
