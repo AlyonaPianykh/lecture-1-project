@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './Button.css';
-// const Button = (props) => {
-//
-//
-// };
+
 const CN = 'default-btn';
 
 export class ButtonAsClass extends Component {
@@ -15,7 +12,7 @@ export class ButtonAsClass extends Component {
 
   onClick() {
     const { onClick } = this.props;
-console.log('I\' here');
+    console.log('I\' here');
     onClick && onClick();
   }
 

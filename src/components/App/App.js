@@ -4,6 +4,7 @@ import { ButtonAsClass as Button } from '../Button/Button';
 import { Header } from '../Header/Header';
 import Checkbox from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
+import { Toggle } from '../toggleButton/Toggle'
 
 import './App.css';
 
@@ -113,6 +114,11 @@ class AppTheReal extends Component {
         <div className="divider"/>
         <ul className="list">{renderPeopleList()}</ul>
         {this.renderActionsBlock()}
+
+        <Toggle
+            checked={isDarkTheme}
+            handleToggle={this.onApplyBtnClick}
+        />
       </div>
     );
   }
