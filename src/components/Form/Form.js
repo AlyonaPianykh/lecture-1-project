@@ -53,7 +53,7 @@ export class Form extends Component {
                     className={`${CN}__input`}
                     onChange={this.onInputChange}
                     value={inputValue}
-                    placeholder={'pisooooos'}
+                    placeholder={''}
                 />
                 <CheckBox
                     onChange={this.onCheck}

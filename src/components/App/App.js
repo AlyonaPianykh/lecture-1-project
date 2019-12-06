@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Button as Button} from '../Button/Button';
 import {Header} from '../Header/Header';
-import {Form} from '../Form/Form'
+import {Form} from '../Form/Form';
+import {Toggle} from '../Toggle/Toggle'
 import Switch from 'react-switch';
 
 import './App.css';
@@ -81,13 +82,9 @@ class AppTheReal extends Component {
 
                 {showSuccess && <div>All good!</div>}
 
-                <Button
-                    label="light/dark mode"
-                    className={`${CN}__btn ${CN}__btn--error`}
-                    onClick={this.onApplyBtnClick}
-                />
+                <Toggle/>
 
-                <div>Switcher</div>
+                <div/>
                 <Switch
                     onChange={this.onApplyBtnClick}
                     checked={this.state.isChecked}
