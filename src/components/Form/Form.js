@@ -36,11 +36,11 @@ export class Form extends Component {
         return inputValue.length && isChecked;
     };
 
-    // OnFormSubmit = () => {
+    OnFormSubmit = () => {
     //     const {onFormSubmit} = this.props;
     //     onFormSubmit && onFormSubmit();
-    //     console.log('success');
-    // };
+        console.log('success');
+  };
 
 
     render() {
@@ -53,11 +53,12 @@ export class Form extends Component {
                     className={`${CN}__input`}
                     onChange={this.onInputChange}
                     value={inputValue}
+                    placeholder={'pisooooos'}
                 />
                 <CheckBox
                     onChange={this.onCheck}
                     isChecked={isChecked}
-                    label="lorem"
+                    label="Check Box"
                 />
                 <Button
                     label="click"

@@ -27,13 +27,13 @@ class AppTheReal extends Component {
         return (
             <div className="actions-block">
                 <Button
-                    label="Cancel"
+                    label="Light mode"
                     className={`${CN}__btn ${CN}__btn--error`}
                     onClick={this.onApplyBtnClick}
                 />
 
                 <Button
-                    label="Apply"
+                    label="Dark mode"
                     className={`${CN}__btn`}
                     onClick={this.onApplyBtnClick}
                 />
@@ -79,6 +79,12 @@ class AppTheReal extends Component {
                 <Form onFormSubmit = {this.onFormSubmit}/>
 
                 {showSuccess && <div>All good!</div>}
+
+                <Button
+                    label="light/dark mode"
+                    className={`${CN}__btn ${CN}__btn--error`}
+                    onClick={this.onApplyBtnClick}
+                />
 
             </div>
         );
