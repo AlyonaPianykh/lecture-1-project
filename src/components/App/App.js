@@ -4,6 +4,7 @@ import { Button } from '../Button/Button';
 import { Header } from '../Header/Header';
 import { List } from '../List/List';
 import { Input } from '../Input/Input';
+import { Toggle } from '../Toggle/Toggle';
 
 import './App.css';
 
@@ -73,27 +74,20 @@ class AppTheReal extends Component {
   };
 
   renderActionsBlock() {
+    const { isDarkTheme } = this.state;
     return (
       <div className="actions-block">
         <Button
           label="Add Character"
           onClick={this.onAddCharacterClick}
         />
-        <Button
-          label="On"
-          onClick={this.onThemeChange}
-        />
-        <Button
-          label="Off"
-          onClick={this.onThemeChange}
-        />
+        <Toggle themeChange={this.onThemeChange} isDarkTheme={isDarkTheme}/>
       </div>
     );
   }
 
   render() {
     const { inputValue, isDarkTheme, characters } = this.state;
-
     const darkThemeCN = isDarkTheme ? `${CN}--dark` : '';
 
     return (
