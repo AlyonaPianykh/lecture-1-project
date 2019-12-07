@@ -1,8 +1,9 @@
 .toggle-wrap {
+    margin: 5px;
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 40px;
+    height: 19px;
 }
 
 .toggle-wrap input {display:none;}
@@ -14,7 +15,6 @@
     height: 100%;
     width: 100%;
     background-color: palevioletred;
-    -webkit-transition: .4s;
     transition: .4s;
 }
 
@@ -22,18 +22,16 @@
     content: "";
     position: absolute;
     border-radius: 50%;
-    height: 26px;
-    width: 26px;
+    height: 13px;
+    width: 13px;
     left: 4px;
-    bottom: 4px;
+    bottom: 3px;
     background-color: white;
-    -webkit-transition: .25s;
     transition: .25s;
 }
 
 input:checked + .toggle-el {
     background-color: lightseagreen;
-    box-shadow: inset 0 -20px 37px 0px rgba(0, 0, 0, 0.36);
 }
 
 input:focus + .toggle-el {
@@ -41,7 +39,5 @@ input:focus + .toggle-el {
 }
 
 input:checked + .toggle-el:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    transform: translateX(20px);
 }

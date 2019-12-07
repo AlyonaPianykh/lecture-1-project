@@ -37,6 +37,7 @@ class AppTheReal extends Component {
         this.greeting = 'Hello, world!';
 
         this.state = {
+            isToggleChecked: false,
             isChecked: false,
             inputValue: '',
             isDarkTheme: true
@@ -65,9 +66,10 @@ class AppTheReal extends Component {
     }
 
     onApplyBtnClick() {
-        const {isDarkTheme} = this.state;
+        const {isDarkTheme, isToggleChecked} = this.state;
 
         this.setState({
+            isToggleChecked: !isToggleChecked,
             isDarkTheme: !isDarkTheme
         });
     }
@@ -89,7 +91,7 @@ class AppTheReal extends Component {
     };
 
     render() {
-        const {isChecked, inputValue, isDarkTheme} = this.state;
+        const {isChecked, inputValue, isDarkTheme, isToggleChecked} = this.state;
         const greetingElement = (<div className="class-12">{this.greeting}</div>);
 
         console.log('App render');
@@ -115,7 +117,7 @@ class AppTheReal extends Component {
                 <ul className="list">{renderPeopleList()}</ul>
                 {this.renderActionsBlock()}
 
-            <Toggle/>
+                <Toggle isChecked={isToggleChecked} onChange={this.onApplyBtnClick}/>
 
                 <Footer className="App-footer">
                     <div>Lviv, December 2019.</div>
