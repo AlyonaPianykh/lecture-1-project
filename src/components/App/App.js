@@ -39,15 +39,17 @@ class AppTheReal extends Component {
       isChecked: false,
       inputValue: '',
       isDarkTheme: true,
-      showSuccess: true
+      showSuccess: false
     };
 
     this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
+    // this.onFormSubmit = this.onFormSubmit.bind(this)
   }
 
   renderActionsBlock() {
     return (
       <div className="actions-block">
+
         <Button
           label="Cancel"
           className={`${CN}__btn ${CN}__btn--error`}
@@ -59,41 +61,57 @@ class AppTheReal extends Component {
           className={`${CN}__btn`}
           onClick={this.onApplyBtnClick}
         />
+
       </div>
     );
   }
 
   onApplyBtnClick() {
-    const {isDarkTheme} = this.state;
-
-    this.setState({
-      isDarkTheme: !isDarkTheme
-    });
+        const {isDarkTheme} = this.state;
+        this.setState({
+        isDarkTheme: !isDarkTheme
+        });
   }
 
-onFormSubmit = () =>{
-    const {showSuccess} = this.state
-    this.setState({
-        showSuccess: true
-    })
-}
+  onFormSubmit = () =>{
+        const {showSuccess} = this.state;
+        console.log('yes');
+        this.setState({
+            showSuccess: true
+         })
+  };
+
+
+  onTextHide = () =>{
+        const {showSuccess} = this.state;
+        this.setState({
+            showSuccess: false
+        })
+  };
+
 
 
   render() {
-    const { isChecked, inputValue, isDarkTheme , showSuccess} = this.state;
-
+    const {isChecked,inputValue, isDarkTheme , showSuccess} = this.state;
 
     const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
 
     return (
       <div className={`${CN} ${darkThemeClass}`}>
+
         <Header
           className="App-header"
           showLogo={true}
         >
           <div>this is children of header</div>
+
         </Header>
-        <Form  onFormsubmit={this.onFormSubmit} />
+
+        <Form
+            onFormSubmit={this.onFormSubmit}
+            onTextHide={this.onTextHide}
+            inputValue={inputValue}
+        />
         { showSuccess && <div>All good</div>}
 
       </div>
