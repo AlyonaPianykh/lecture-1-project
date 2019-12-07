@@ -1,0 +1,43 @@
+.toggle-wrap {
+    margin: 5px;
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 19px;
+}
+
+.toggle-wrap input {display:none;}
+
+.toggle-el {
+    position: relative;
+    cursor: pointer;
+    border-radius: 34px;
+    height: 100%;
+    width: 100%;
+    background-color: palevioletred;
+    transition: .4s;
+}
+
+.toggle-el:before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .25s;
+}
+
+input:checked + .toggle-el {
+    background-color: lightseagreen;
+}
+
+input:focus + .toggle-el {
+    box-shadow: 0 0 1px lightseagreen;
+}
+
+input:checked + .toggle-el:before {
+    transform: translateX(20px);
+}

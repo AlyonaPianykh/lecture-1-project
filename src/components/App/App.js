@@ -1,121 +1,130 @@
-import React, { Component } from 'react';
-import { people } from '../../constants/people';
-import { ButtonAsClass as Button } from '../Button/Button';
-import { Header } from '../Header/Header';
+import React, {Component} from 'react';
+import {people} from '../../constants/people';
+import {ButtonAsClass as Button} from '../Button/Button';
+import {Header} from '../Header/Header';
 import Checkbox from '../Checkbox/Checkbox';
-import { Input } from '../Input/Input';
+import {Input} from '../Input/Input';
+import {Footer} from "../Footer/Footer";
+import {Toggle} from "../Toggle/Toggle";
 
 import './App.css';
 
 const CN = 'App';
 
 function renderPeopleList() {
-  return people.map(person => {
-    const { firstName, lastName, avatar, address = 'New York' } = person;
+    return people.map(person => {
+        const {firstName, lastName, avatar, address = 'New York'} = person;
 
-    return (
-      <li className="list-item" key={`${firstName} ${lastName}`}>
-        <div>{firstName}</div>
-        <div>{lastName}</div>
-        <img
-          src={avatar}
-          className="avatar"
-          alt={`avatar for ${firstName} ${lastName}`}
-        />
-        <div>{address}</div>
-      </li>
-    );
-  });
+        return (
+            <li className="list-item" key={`${firstName} ${lastName}`}>
+                <div>{firstName}</div>
+                <div>{lastName}</div>
+                <img
+                    src={avatar}
+                    className="avatar"
+                    alt={`avatar for ${firstName} ${lastName}`}
+                />
+                <div>{address}</div>
+            </li>
+        );
+    });
 }
 
 class AppTheReal extends Component {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.greeting = 'Hello, world!';
+        this.greeting = 'Hello, world!';
 
-    this.state = {
-      isChecked: false,
-      inputValue: '',
-      isDarkTheme: true
+        this.state = {
+            isToggleChecked: false,
+            isChecked: false,
+            inputValue: '',
+            isDarkTheme: true
+        };
+
+        this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
+        this.onCheck = this.onCheck.bind(this);
+    }
+
+    renderActionsBlock() {
+        return (
+            <div className="actions-block">
+                <Button
+                    label="Cancel"
+                    className={`${CN}__btn ${CN}__btn--error`}
+                    onClick={this.onApplyBtnClick}
+                />
+
+                <Button
+                    label="Apply"
+                    className={`${CN}__btn`}
+                    onClick={this.onApplyBtnClick}
+                />
+            </div>
+        );
+    }
+
+    onApplyBtnClick() {
+        const {isDarkTheme, isToggleChecked} = this.state;
+
+        this.setState({
+            isToggleChecked: !isToggleChecked,
+            isDarkTheme: !isDarkTheme
+        });
+    }
+
+    onCheck(e) {
+        const {isChecked} = this.state;
+
+        this.setState({
+            isChecked: !isChecked
+        }, () => {
+            console.log('state changed');
+        });
+    }
+
+    onInputChange = (inputValue) => {
+        this.setState({
+            inputValue
+        });
     };
 
-    this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
-    this.onCheck = this.onCheck.bind(this);
-  }
+    render() {
+        const {isChecked, inputValue, isDarkTheme, isToggleChecked} = this.state;
+        const greetingElement = (<div className="class-12">{this.greeting}</div>);
 
-  renderActionsBlock() {
-    return (
-      <div className="actions-block">
-        <Button
-          label="Cancel"
-          className={`${CN}__btn ${CN}__btn--error`}
-          onClick={this.onApplyBtnClick}
-        />
+        console.log('App render');
 
-        <Button
-          label="Apply"
-          className={`${CN}__btn`}
-          onClick={this.onApplyBtnClick}
-        />
-      </div>
-    );
-  }
+        const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
 
-  onApplyBtnClick() {
-    const {isDarkTheme} = this.state;
+        return (
+            <div className={`${CN} ${darkThemeClass}`}>
+                <Header
+                    className="App-header"
+                    showLogo={true}
+                >
+                    <div>this is children of header</div>
+                </Header>
 
-    this.setState({
-      isDarkTheme: !isDarkTheme
-    });
-  }
+                <div>
+                    {greetingElement}
+                </div>
 
-  onCheck(e) {
-    const { isChecked } = this.state;
+                <Checkbox label="Click me" isChecked={isChecked} onChange={this.onCheck}/>
 
-    this.setState({
-      isChecked: !isChecked
-    }, () => {
-      console.log('state changed');
-    });
-  }
+                <Input value={inputValue} onChange={this.onInputChange}/>
+                <ul className="list">{renderPeopleList()}</ul>
+                {this.renderActionsBlock()}
 
-  onInputChange = (inputValue) => {
-    this.setState({
-      inputValue
-    });
-  };
+                <Toggle isChecked={isToggleChecked} onChange={this.onApplyBtnClick}/>
 
-  render() {
-    const { isChecked, inputValue, isDarkTheme } = this.state;
-    const greetingElement = (<div className="class-12">{this.greeting}</div>);
-
-    console.log('App render');
-
-    const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
-
-    return (
-      <div className={`${CN} ${darkThemeClass}`}>
-        <Header
-          className="App-header"
-          showLogo={true}
-        >
-          <div>this is children of header</div>
-        </Header>
-
-        <div>
-          {greetingElement}
-        </div>
-
-        <Checkbox label="Click me" isChecked={isChecked} onChange={this.onCheck}/>
-
-        <Input value={inputValue} onChange={this.onInputChange}/>
-        <div className="divider"/>
-        <ul className="list">{renderPeopleList()}</ul>
-        {this.renderActionsBlock()}
-      </div>
-    );
-  }
+                <Footer className="App-footer">
+                    <div>Lviv, December 2019.</div>
+                </Footer>
+            </div>
+        );
+    }
 }
 
 export default AppTheReal;
