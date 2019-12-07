@@ -30,9 +30,15 @@ export class Form extends Component {
         })
     };
 
-    // onFormSubmit = () => {
-    //     console.log('success');
-    // };
+    ClearAll = () => {
+        const {onFormSubmit} = this.props;
+        onFormSubmit();
+        this.setState({
+            isChecked: false,
+            inputValue: '',
+        });
+    };
+
 
     isValid = () => {
         const {inputValue, isChecked} = this.state;
@@ -60,6 +66,11 @@ export class Form extends Component {
                     className={`${CN}_btn`}
                     onClick={onFormSubmit}
                     disabled={!this.isValid()}
+                />
+                <Button
+                    label='clear all'
+                    className={`${CN}_btn`}
+                    onClick={this.ClearAll}
                 />
 
             </form>
