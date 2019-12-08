@@ -38,7 +38,7 @@ class AppTheReal extends Component {
       greeting: 'Hello, robot!',
       characters: ['Iron Man', 'Batman'],
       inputValue: '',
-      isDarkTheme: true
+      isDarkTheme: false
     };
     //this.onCancelClick = this.onCancelClick.bind(this);
     this.onThemeChange = this.onThemeChange.bind(this);
@@ -81,7 +81,7 @@ class AppTheReal extends Component {
           label="Add Character"
           onClick={this.onAddCharacterClick}
         />
-        <Toggle themeChange={this.onThemeChange} isDarkTheme={isDarkTheme}/>
+        <Toggle themeChange={this.onThemeChange} isDarkThemeOn={isDarkTheme}/>
       </div>
     );
   }

@@ -1,17 +1,24 @@
 import React from "react";
+import { Button } from '../Button/Button';
 import './Toggle.css';
 
 export const Toggle = (props) => {
 
-  const {themeChange, isDarkTheme} = props;
+  const {themeChange, isDarkThemeOn} = props;
+
+  const darkThemeOnClass = isDarkThemeOn ? 'buttonGreenLeft' : 'buttonGreenRight';
+
 
   return (
-    <div>
-      {isDarkTheme}
-      <label>
-        <input id="input" type="checkbox" onChange={themeChange}/>
-        <span className="check"></span>
-      </label>
+    <div className={darkThemeOnClass}>
+      <Button className='buttonLeft'
+        label=""
+        onClick={themeChange}
+      />
+      <Button className='buttonRight'
+        label=""
+        onClick={themeChange}
+      />
     </div>
   );
 };
