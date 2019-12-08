@@ -1,0 +1,57 @@
+.buttonLeft, .buttonRight {
+    border: 1px solid black;
+    background-color: white;
+    position: relative;
+    outline: none;
+
+}
+
+.buttonLeft:after, .buttonRight:after {
+    display: block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    content: "";
+    top: 0;
+    background-color: green;
+
+}
+
+
+.buttonLeft {
+    border-right: none;
+    margin-right: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.buttonLeft:after {
+    left: 0;
+}
+
+
+
+.buttonRight {
+    border-left: none;
+    margin-left: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.buttonRight:after {
+    right: 0;
+}
+
+
+.buttonGreenLeft .buttonLeft,
+.buttonGreenRight .buttonRight   {
+    background-color: lawngreen;
+}
+
+.buttonGreenLeft .buttonRight:after,
+.buttonGreenRight .buttonLeft:after {
+    display: none;
+}
+
+
+
