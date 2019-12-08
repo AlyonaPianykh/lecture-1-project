@@ -15,7 +15,7 @@ export class ButtonAsClass extends Component {
 
   onClick() {
     const { onClick } = this.props;
-console.log('I\' here');
+    console.log('I\' here');
     onClick && onClick();
   }
 
@@ -23,14 +23,14 @@ console.log('I\' here');
     const { className = '', type = 'button', disabled = false, label = '' } = this.props;
 
     return (
-      <button
-        className={`${CN} ${className}`}
-        onClick={this.onClick}
-        disabled={disabled}
-        type={type}
-      >
-        {label}
-      </button>
+        <button
+            className={`${CN} ${className}`}
+            onClick={this.onClick}
+            disabled={disabled}
+            type={type}
+        >
+          {label}
+        </button>
     );
   }
 }

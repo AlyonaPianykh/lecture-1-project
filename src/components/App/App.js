@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { people } from '../../constants/people';
-import { ButtonAsClass as Button } from '../Button/Button';
+import { Toogle } from '../Toogle/Toogle';
 import { Header } from '../Header/Header';
 import Checkbox from '../Checkbox/Checkbox';
 import { Input } from '../Input/Input';
@@ -37,36 +37,19 @@ class AppTheReal extends Component {
     this.state = {
       isChecked: false,
       inputValue: '',
-      isDarkTheme: true
+      theme: 'light',
     };
 
     this.onApplyBtnClick = this.onApplyBtnClick.bind(this);
     this.onCheck = this.onCheck.bind(this);
   }
 
-  renderActionsBlock() {
-    return (
-      <div className="actions-block">
-        <Button
-          label="Cancel"
-          className={`${CN}__btn ${CN}__btn--error`}
-          onClick={this.onApplyBtnClick}
-        />
 
-        <Button
-          label="Apply"
-          className={`${CN}__btn`}
-          onClick={this.onApplyBtnClick}
-        />
-      </div>
-    );
-  }
-
-  onApplyBtnClick() {
-    const {isDarkTheme} = this.state;
+  onApplyBtnClick( themeStyle ) {
+    const {theme} = this.state;
 
     this.setState({
-      isDarkTheme: !isDarkTheme
+        theme: themeStyle
     });
   }
 
@@ -87,12 +70,13 @@ class AppTheReal extends Component {
   };
 
   render() {
-    const { isChecked, inputValue, isDarkTheme } = this.state;
+    const { isChecked, inputValue, theme } = this.state;
     const greetingElement = (<div className="class-12">{this.greeting}</div>);
+    const ThemeOn = theme === 'dark' ? 'dark' : 'light';
 
     console.log('App render');
 
-    const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
+    const darkThemeClass = theme === 'dark' && `${CN}__dark`;
 
     return (
       <div className={`${CN} ${darkThemeClass}`}>
@@ -112,7 +96,7 @@ class AppTheReal extends Component {
         <Input value={inputValue} onChange={this.onInputChange}/>
         <div className="divider"/>
         <ul className="list">{renderPeopleList()}</ul>
-        {this.renderActionsBlock()}
+          <Toogle onHandleFunction={ this.onApplyBtnClick }  ThemeOn={ThemeOn}/>
       </div>
     );
   }
