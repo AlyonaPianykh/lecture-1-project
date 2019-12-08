@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { people } from '../../constants/people';
 import { Button as Button } from '../Button/Button';
 import { Header } from '../Header/Header';
-import Checkbox from '../Checkbox/Checkbox';
-import { Input } from '../Input/Input';
+import {Toggle} from "../Toggle/Toggle";
 import { Form } from "../Form/Form";
 
 import './App.css';
@@ -63,13 +62,14 @@ class AppTheReal extends Component {
     );
   }
 
-  onApplyBtnClick() {
-    const {isDarkTheme} = this.state;
+    onApplyBtnClick() {
+        const {isDarkTheme, isToggleChecked} = this.state;
 
-    this.setState({
-      isDarkTheme: !isDarkTheme
-    });
-  };
+        this.setState({
+            isToggleChecked: !isToggleChecked,
+            isDarkTheme: !isDarkTheme
+        });
+    }
 
   onFormSubmit = () => {
       const {showSuccess} = this.state;
@@ -81,7 +81,7 @@ class AppTheReal extends Component {
   };
 
   render() {
-    const { isDarkTheme , showSuccess} = this.state;
+    const { isDarkTheme , showSuccess, isToggleChecked} = this.state;
 
     const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
 
@@ -97,6 +97,8 @@ class AppTheReal extends Component {
        <Form onFormSubmit = {this.onFormSubmit} />
 
           {showSuccess && <div>ALL GOOD</div> } {/*We use logical and that show or hide elements that Look flags in state*/}
+
+          <Toggle isChecked={isToggleChecked} onChange={this.onApplyBtnClick}/>
 
       </div>
     );
