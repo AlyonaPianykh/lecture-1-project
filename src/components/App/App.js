@@ -89,8 +89,6 @@ class AppTheReal extends Component {
         })
   };
 
-
-
   render() {
     const {isChecked,inputValue, isDarkTheme , showSuccess} = this.state;
 

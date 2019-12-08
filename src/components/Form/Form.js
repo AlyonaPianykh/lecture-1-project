@@ -3,7 +3,7 @@ import { Input} from '../Input/Input'
 import Checkbox from '../Checkbox/Checkbox'
 import {Button} from "../Button/Button";
 
-const CN = 'custom-from'
+const CN = 'custom-from';
 export class Form extends Component{
     constructor(props){
         super(props);
@@ -44,6 +44,11 @@ export class Form extends Component{
         onTextHide && onTextHide();
     };
 
+    onClick =()=> {
+        const { onFormSubmit } = this.props;
+        console.log(this.state.inputValue);
+        onFormSubmit && onFormSubmit();
+    }
 
     render(){
         const { inputValue,isChecked} = this.state;
@@ -64,12 +69,16 @@ export class Form extends Component{
 
                 <Button
                     label="click me"
-                    label2='clear'
                     className={`${CN}__btn`}
-                    onClick={onFormSubmit}
+                    onClick={this.onClick}
                     disabled={!this.isValid()}
-                    onClick2={this.onClear}
                     inputValue={inputValue}
+                />
+
+                <Button
+                    label='clear'
+                    className={`${CN}__btn`}
+                    onClick={this.onClear}
                 />
             </form>
         );

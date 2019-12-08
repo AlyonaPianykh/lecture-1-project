@@ -10,46 +10,30 @@ export class Button extends Component {
   constructor(props) {
     super(props);
 
-    this.onClick = this.onClick.bind(this);
+    // this.onClick = this.onClick.bind(this);
   }
 
-  onClick() {
-      const { onClick,inputValue } = this.props;
-      console.log(inputValue);
-      onClick && onClick();
-  }
-
-
+  // onClick() {
+  //       const { onClick,inputValue } = this.props;
+  //       console.log(inputValue);
+  //       onClick && onClick();
+  //   }
 
   render() {
     const { className = '',
             type = 'button',
             disabled = false,
-            label = '',label2 = '',
-            onClick2} = this.props;
+            label = '',} = this.props;
 
     return (
-  <div>
       <button
           className={`${CN} ${className}`}
-          onClick={this.onClick}
+          onClick={this.props.onClick}
           disabled={disabled}
           type={type}
       >
         {label}
       </button>
-
-      <button
-          className={`${CN} ${className}`}
-          onClick={onClick2}
-          disabled={disabled}
-          type={type}
-      >
-          {label2}
-      </button>
-
-
-  </div>
     );
   }
 }
