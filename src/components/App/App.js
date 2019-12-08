@@ -5,6 +5,7 @@ import {Header} from '../Header/Header';
 import Checkbox from '../Checkbox/Checkbox';
 import {Input} from '../Input/Input';
 import {Form} from "../Form/Form";
+import {Toggle} from "../Toggle/Toggle";
 
 import './App.css';
 
@@ -37,9 +38,10 @@ class AppTheReal extends Component {
         this.greeting = 'Hello, world!';
 
         this.state = {
+            isToggleChecked: false,
             isChecked: false,
             inputValue: '',
-            isDarkTheme: true,
+            isDarkTheme: false,
             showSuccess: false
         };
 
@@ -64,9 +66,10 @@ class AppTheReal extends Component {
     }
 
     onApplyBtnClick() {
-        const {isDarkTheme} = this.state;
+        const {isDarkTheme, isToggleChecked} = this.state;
 
         this.setState({
+            isToggleChecked: !isToggleChecked,
             isDarkTheme: !isDarkTheme
         });
     }
@@ -85,7 +88,7 @@ class AppTheReal extends Component {
     };
 
     render() {
-        const {isDarkTheme, showSuccess} = this.state;
+        const {isDarkTheme, showSuccess, isToggleChecked} = this.state;
 
         const darkThemeClass = isDarkTheme ? `${CN}__dark` : '';
 
@@ -103,6 +106,8 @@ class AppTheReal extends Component {
                 { showSuccess && <div>All good!</div> }
 
                 {this.renderActionsBlock()}
+
+                <Toggle isChecked={isToggleChecked} onChange={this.onApplyBtnClick}/>
 
             </div>
         );
