@@ -9,11 +9,11 @@ export class Toggle extends Component {
 
     render() {
 
-        const {type = 'checkbox', isToggleChecked, onChange} = this.props;
+        const {type = 'checkbox', isToggleChecked, onChange, label} = this.props;
 
         return (
             <label className="toggle-wrap">
-                <div>{this.props.label}</div>
+                <div>{label}</div>
                 <input type={type}
                        checked={isToggleChecked}
                        onChange={onChange}

@@ -30,7 +30,7 @@ export class Form extends Component {
         });
     };
 
-    o/*nFormSubmit = () => {
+    /*nFormSubmit = () => {
         const {onFormSubmit} = this.props;
 
         onFormSubmit && onFormSubmit(); /!*Більш надійний спосіб*!/
